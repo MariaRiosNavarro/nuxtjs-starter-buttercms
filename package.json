@@ -7,11 +7,11 @@
     "heroku-postbuild": "npm run build"
   },
   "devDependencies": {
-    "nuxt": "npm:nuxt3@latest"
+    "nuxt": "^3"
   },
   "dependencies": {
-    "buttercms": "^1.2.8",
+    "buttercms": "^1.2.10",
     "tiny-slider": "^2.9.4",
-    "vue": "^3.2.31"
+    "vue": "^3.2.47"
   }
 }
