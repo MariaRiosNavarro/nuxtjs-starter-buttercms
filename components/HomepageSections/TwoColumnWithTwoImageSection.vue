@@ -3,38 +3,10 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 order-last order-lg-first">
-          <div class="cta-image" :class="`${fields.image_position}-image`">
-            <img :src="fields.image" alt="" />
-          </div>
-          <div class="cta-content-wrapper">
-            <div class="section-title">
-              <h2 class="mb-20">{{ fields.headline }}</h2>
-              <div v-html="fields.subheadline"></div>
-              <a
-                :href="fields.button_url"
-                class="main-btn btn-hover border-btn mt-30"
-                target="_blank"
-                >{{ fields.button_label }}</a
-              >
-            </div>
-          </div>
+          <img :src="fields.image1" alt="" />
         </div>
         <div class="col-lg-6">
-          <div class="cta-image" :class="`${fields.image_position}-image`">
-            <img :src="fields.image" alt="" />
-          </div>
-          <div class="cta-content-wrapper">
-            <div class="section-title">
-              <h2 class="mb-20">{{ fields.headline }}</h2>
-              <div v-html="fields.subheadline"></div>
-              <a
-                :href="fields.button_url"
-                class="main-btn btn-hover border-btn mt-30"
-                target="_blank"
-                >{{ fields.button_label }}</a
-              >
-            </div>
-          </div>
+          <img :src="fields.image2" alt="" />
         </div>
       </div>
     </div>

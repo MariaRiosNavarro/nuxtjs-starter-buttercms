@@ -1,44 +1,44 @@
 <script setup>
-import {inject, onMounted} from "vue";
+import { inject, onMounted } from "vue";
 import HeroSection from "@/components/HomepageSections/HeroSection.vue";
 import TwoColumnWithImageSection from "@/components/HomepageSections/TwoColumnWithImageSection.vue";
+import TwoColumnWithTwoImageSection from "@/components/HomepageSections/TwoColumnWithTwoImageSection.vue";
 import FeaturesSection from "@/components/HomepageSections/FeaturesSection.vue";
 import BlogSection from "@/components/HomepageSections/BlogSection.vue";
 import TestimonialsSection from "../components/HomepageSections/TestimonialsSection";
-import {useApiError} from "../composables/hooks";
+import { useApiError } from "../composables/hooks";
 import Seo from "../components/Seo";
 
-const { $butterCMS } = useNuxtApp()
+const { $butterCMS } = useNuxtApp();
 const { setError } = useApiError();
-const { handleMounted } = inject("layout")
+const { handleMounted } = inject("layout");
 
-const props = defineProps(['slug'])
+const props = defineProps(["slug"]);
 
-const {data} = await useAsyncData('home-data', async () => {
-  const pageSlug = props.slug ?? "landing-page-with-components";
-  try{
-    const page = await $butterCMS?.page.retrieve(
-      "landing-page",
-      pageSlug
-    );
-    const pageData = page?.data.data;
-    const posts = await $butterCMS?.post.list({ page: 1, page_size: 2 });
-    const blogPosts = posts?.data.data;
-    return {
-      pageData,
-      blogPosts
+const { data } = await useAsyncData(
+  "home-data",
+  async () => {
+    const pageSlug = props.slug ?? "landing-page-with-components";
+    try {
+      const page = await $butterCMS?.page.retrieve("landing-page", pageSlug);
+      const pageData = page?.data.data;
+      const posts = await $butterCMS?.post.list({ page: 1, page_size: 2 });
+      const blogPosts = posts?.data.data;
+      return {
+        pageData,
+        blogPosts,
+      };
+    } catch (e) {
+      setError(e);
+      return null;
     }
-  } catch (e) {
-    setError(e)
-    return null
-  }
-}, {lazy: false})
-
+  },
+  { lazy: false }
+);
 
 onMounted(() => {
-  handleMounted()
-})
-
+  handleMounted();
+});
 </script>
 
 <template>
@@ -51,6 +51,11 @@ onMounted(() => {
         :fields="item.fields"
       />
       <two-column-with-image-section
+        v-if="item.type === 'two_column_with_image'"
+        :key="index"
+        :fields="item.fields"
+      />
+      <two-column-with-two-image-section
         v-if="item.type === 'two_column_with_image'"
         :key="index"
         :fields="item.fields"
