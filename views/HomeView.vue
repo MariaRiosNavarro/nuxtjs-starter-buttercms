@@ -55,11 +55,6 @@ onMounted(() => {
         :key="index"
         :fields="item.fields"
       />
-      <two-column-with-two-image-section
-        v-if="item.type === 'two_column_with_image'"
-        :key="index"
-        :fields="item.fields"
-      />
       <features-section
         v-if="item.type === 'features'"
         :key="index"
